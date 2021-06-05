@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+        <variable
+            name="todo"
+            type="ch.bbc.navigation.models.Todo" />
+
+        <variable
+            name="viewModel"
+            type="ch.bbc.navigation.views.todos.todolist.TodoListViewModel" />
+    </data>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:text="@{String.valueOf(todo.id)}"
+        />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:text="@{todo.title}"
+        android:onClick="@{(view) -> viewModel.navigateTo(view, todo.id)}"
+        />
+
+</LinearLayout>
+</layout>
