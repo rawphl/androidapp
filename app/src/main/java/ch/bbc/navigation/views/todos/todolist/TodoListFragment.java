@@ -1,7 +1,6 @@
 package ch.bbc.navigation.views.todos.todolist;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
 
 import ch.bbc.navigation.R;
+import ch.bbc.navigation.models.Todo;
 import ch.bbc.navigation.services.TodoService;
 
 public class TodoListFragment extends Fragment {
@@ -25,7 +27,6 @@ public class TodoListFragment extends Fragment {
     private TodoService todoService;
 
     public TodoListFragment() {
-
     }
 
     public static TodoListFragment newInstance() {
@@ -36,8 +37,9 @@ public class TodoListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        todoService = new TodoService(getContext());
+        todoService = new TodoService();
         View view = inflater.inflate(R.layout.todo_list, container, false);
+
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
@@ -58,7 +60,7 @@ public class TodoListFragment extends Fragment {
         Log.d(TAG, "LOADING TODOS");
 
         try {
-            todoService.loadTodos((todos) ->
+            todoService.getTodos((todos) ->
             {
                 viewModel.setTodos(todos);
             });

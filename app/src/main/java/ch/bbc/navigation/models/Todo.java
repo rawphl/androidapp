@@ -1,9 +1,11 @@
 package ch.bbc.navigation.models;
 
 public class Todo {
+
     private int id;
     private int userId;
     private String title;
+    private String body;
     private boolean completed;
 
     public Todo() {}
@@ -40,12 +42,21 @@ public class Todo {
         this.completed = completed;
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
     @Override
     public String toString() {
         return "Todo{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
                 ", completed=" + completed +
                 '}';
     }

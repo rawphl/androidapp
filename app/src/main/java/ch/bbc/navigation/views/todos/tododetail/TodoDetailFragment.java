@@ -33,7 +33,7 @@ public class TodoDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        todoService = new TodoService(getContext());
+        todoService = new TodoService();
         todoId = getArguments().getInt(ARG_PARAM1);
         binding = TodoDetailBinding.inflate(LayoutInflater.from(getContext()));
         binding.setLifecycleOwner(getViewLifecycleOwner());
@@ -43,6 +43,6 @@ public class TodoDetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        todoService.loadTodo(todoId, (todo) -> binding.setTodo(todo));
+        todoService.getTodo(todoId, (todo) -> binding.setTodo(todo));
     }
 }
