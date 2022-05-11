@@ -52,6 +52,4 @@ public class TodoListRecyclerViewAdapter extends RecyclerView.Adapter<TodoListRe
             this.binding = binding;
         }
     }
-
-
 }
